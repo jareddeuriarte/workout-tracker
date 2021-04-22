@@ -1,21 +1,24 @@
 const path = require('path');
-
+const app = express();
+const fs = require('fs')
 
 module.exports = (app) => {
-  // => HTML GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases the user is shown an HTML page of content
 
-  app.get('/tables', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/tables.html'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './views/index.html'));
   });
 
-  app.get('/reserve', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/reserve.html'));
+  app.get('/exercise', (req, res) => {
+    res.sendFile(path.join(__dirname, './views/exercise.html'));
+  });
+
+
+  app.get('/stats', (req, res) => {
+    res.sendFile(path.join(__dirname, './views/stats.html'));
   });
 
   // If no matching route is found default to home
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/home.html'));
+    res.sendFile(path.join(__dirname, './views/index.html'));
   });
 };
