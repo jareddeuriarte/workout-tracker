@@ -3,6 +3,13 @@ let Workout = require("../models/workout");
 module.exports = (app) => {
 
     app.get('/api/workouts', (req, res) => {
+        Workout.find(req.exercises)
+        .then(dbData => {
+            res.json(dbData);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
 
     })
 
@@ -37,11 +44,12 @@ module.exports = (app) => {
 
 
     app.get('/api/workouts/range', (req, res) => {
-
+        Workout.find({})
+        .then(dbData => {
+            res.json(dbData);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
     })
-
-
-
-
-
 };
